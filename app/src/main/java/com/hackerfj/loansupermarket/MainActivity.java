@@ -114,6 +114,9 @@ public class MainActivity extends BaseActivity implements MeFragment.Refreshfrag
                 tv_c.setTextColor(getResources().getColor(R.color.color_797978));
                 break;
             case R.id.rb_weixin_contact:
+                if (StringUtils.isEmpty(token)){
+                    StartActivityUtil.start( getContext() , LoginActivity.class);
+                }else {
                     vpMain.setCurrentItem(1, false);
                     iv_a.setImageResource(R.drawable.icon_home_page_a);
                     tv_a.setTextColor(getResources().getColor(R.color.color_797978));
@@ -121,6 +124,7 @@ public class MainActivity extends BaseActivity implements MeFragment.Refreshfrag
                     tv_b.setTextColor(getResources().getColor(R.color.color_FE6B6B));
                     iv_c.setImageResource(R.drawable.icon_my_a);
                     tv_c.setTextColor(getResources().getColor(R.color.color_797978));
+                }
                 break;
             case R.id.rb_weixin_find:
                 if (StringUtils.isEmpty(token)){

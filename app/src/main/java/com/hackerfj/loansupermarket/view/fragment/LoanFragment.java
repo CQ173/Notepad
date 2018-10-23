@@ -25,6 +25,7 @@ import com.hackerfj.loansupermarket.app.constant.Global;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomePageRes;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomebannerRes;
 import com.hackerfj.loansupermarket.model.entity.res.SangeRes;
+import com.hackerfj.loansupermarket.model.entity.res.StingsRes;
 import com.hackerfj.loansupermarket.model.entity.res.WholeInfoRes;
 import com.hackerfj.loansupermarket.util.StartActivityUtil;
 import com.hackerfj.loansupermarket.util.network.Api;
@@ -56,7 +57,8 @@ public class LoanFragment extends BaseFragment {
     TextView tv_one;
     @BindView(R.id.tv_tow)
     TextView tv_tow;
-
+    @BindView(R.id.tv_nologin)
+    TextView tv_nologin;
     private LoanHomepageAdapter loanHomepageAdapter;
 
     @Override
@@ -67,8 +69,13 @@ public class LoanFragment extends BaseFragment {
     @Override
     protected void initView() {
         onResume();
-        getHomeaa();
-
+        if (StringUtils.isEmpty(Global.getToken())){
+            rvLoanList.setVisibility(View.GONE);
+            tv_nologin.setVisibility(View.VISIBLE);
+        }else {
+            tv_nologin.setVisibility(View.GONE);
+            getHomeaa();
+        }
     }
 
 
@@ -76,10 +83,18 @@ public class LoanFragment extends BaseFragment {
     public void onclick(View view){
         switch (view.getId()){
             case R.id.ll_ed:
-                setpopup();
+                if (StringUtils.isEmpty(Global.getToken())){
+                    StartActivityUtil.start(mActivity , LoginActivity.class);
+                }else {
+                    setpopup();
+                }
                 break;
             case R.id.iv_jiyb:
-                StartActivityUtil.start(mActivity , StingsActivity.class);
+                if (StringUtils.isEmpty(Global.getToken())){
+                    StartActivityUtil.start(mActivity , LoginActivity.class);
+                }else {
+                    StartActivityUtil.start(mActivity , StingsActivity.class);
+                }
                 break;
         }
     }
@@ -105,16 +120,19 @@ public class LoanFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 if (et_addmoeny.getText().toString()!=null) {
-                    Api.getDefault().addmoney(et_addmoeny.getText().toString())
+                    Api.getDefault().addmoney(Global.getId() , et_addmoeny.getText().toString())
                             .compose(RxHelper.handleResult())
-                            .subscribe(new RxSubscriber<List<String>>(mActivity) {
+                            .subscribe(new RxSubscriber< StingsRes >(mActivity) {
                                 @Override
-                                protected void _onNext(List<String> s) {
+                                protected void _onNext( StingsRes  s) {
+                                    Toast.makeText(mActivity, "添加成功", Toast.LENGTH_SHORT).show();
                                     popWindow.dismiss();
+                                    onResume();
                                 }
 
                                 @Override
                                 protected void _onError(String msg) {
+                                    Toast.makeText(mActivity, "添加失败", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }else {
@@ -133,7 +151,7 @@ public class LoanFragment extends BaseFragment {
      * 获取首页数据
      */
     private void getHomeaa(){
-        Api.getDefault().getHomeInfo()
+        Api.getDefault().getHomeInfo(Global.getId() , 0)
                 .compose(RxHelper.handleResult())
                 .subscribe(new RxSubscriber<List<GetHomebannerRes>>(mActivity) {
                     @Override
@@ -154,11 +172,17 @@ public class LoanFragment extends BaseFragment {
 
     @Override
     protected void obtainData() {
-        allmoneyha();
+        if (Global.getToken() != null) {
+            allmoneyha();
+        }else {
+            tv_tow.setText("0");
+            tv_three.setText("0");
+            tv_one.setText("0");
+        }
     }
 
     public void allmoneyha(){
-        Api.getDefault().allmoney()
+        Api.getDefault().allmoney(Global.getId())
                 .compose(RxHelper.handleResult())
                 .subscribe(new RxSubscriber<SangeRes>(mActivity) {
                     @Override
@@ -166,12 +190,11 @@ public class LoanFragment extends BaseFragment {
                         tv_tow.setText(s.getIncome1());
                         tv_three.setText(s.getIncome2());
                         tv_one.setText(s.getIncome3());
-//                        Toast.makeText(mActivity, "调取成功", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     protected void _onError(String msg) {
-//                        Toast.makeText(mActivity, "调取失败", Toast.LENGTH_SHORT).show();
+
                     }
                 });
     }
@@ -184,7 +207,19 @@ public class LoanFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        getHomeaa();
-        allmoneyha();
+        if (StringUtils.isEmpty(Global.getToken())){
+            rvLoanList.setVisibility(View.GONE);
+            tv_nologin.setVisibility(View.VISIBLE);
+        }else {
+            tv_nologin.setVisibility(View.GONE);
+            getHomeaa();
+        }
+        if (Global.getToken() != null) {
+            allmoneyha();
+        }else {
+            tv_tow.setText("0");
+            tv_three.setText("0");
+            tv_one.setText("0");
+        }
     }
 }

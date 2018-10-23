@@ -10,8 +10,6 @@ public class BaseModel<T> implements Serializable {
     public String message;
     public T content;
 
-    private static String SUCCEED_CODE = "10000";
-
     public boolean isSucceed() {
         return StringUtils.equals(code, "10000") ? true : false;
     }

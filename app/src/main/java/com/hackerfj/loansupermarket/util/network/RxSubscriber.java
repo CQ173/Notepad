@@ -58,7 +58,7 @@ public abstract class RxSubscriber<T> extends Subscriber<T> {
         } else if (!NetworkUtils.isAvailableByPing(mContext)) {
             err = mContext.getString(R.string.loadFail_net);
         } else {
-            err = "";
+            err = "请求失败，请稍后！";
         }
         _onError(err);
         if (!StringUtils.isEmpty(err))

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hackerfj.loansupermarket.R;
+import com.hackerfj.loansupermarket.app.constant.Global;
+import com.hackerfj.loansupermarket.model.entity.res.StingsRes;
 import com.hackerfj.loansupermarket.util.network.Api;
 import com.hackerfj.loansupermarket.util.network.RxHelper;
 import com.hackerfj.loansupermarket.util.network.RxSubscriber;
@@ -181,27 +183,32 @@ public class StingsActivity extends BaseActivity {
             case R.id.iv_Sure:
                 if (type == 1 && null != et_money_z.getText()) {
                     Log.i("上传", type + "--" + code + "--" + et_money_z.getText());
-                    Api.getDefault().addall( type , code , et_money_z.getText().toString() )
+                    Api.getDefault().addall( Global.getId(), type , code , et_money_z.getText().toString() )
                             .compose(RxHelper.handleResult())
-                            .subscribe(new RxSubscriber<List<String>>(this) {
+                            .subscribe(new RxSubscriber<StingsRes>(this) {
                                 @Override
-                                protected void _onNext(List<String> s) {
-
+                                protected void _onNext(StingsRes s) {
+                                    Toast.makeText(StingsActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
                                 @Override
                                 protected void _onError(String msg) {
+                                    Toast.makeText(StingsActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }else if (type == 2 && null != et_money_s.getText()){
                     Log.i("上传", type + "--" + code + "--" + et_money_s.getText());
-                    Api.getDefault().addall( type  , code , et_money_s.getText().toString() )
+                    Api.getDefault().addall( Global.getId() , type  , code , et_money_s.getText().toString() )
                             .compose(RxHelper.handleResult())
-                            .subscribe(new RxSubscriber<List<String>>(this) {
+                            .subscribe(new RxSubscriber<StingsRes>(this) {
                                 @Override
-                                protected void _onNext(List<String> s) {
+                                protected void _onNext(StingsRes s) {
+                                    Toast.makeText(StingsActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
                                 @Override
                                 protected void _onError(String msg) {
+                                    Toast.makeText(StingsActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }

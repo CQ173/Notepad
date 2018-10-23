@@ -1,6 +1,7 @@
 package com.hackerfj.loansupermarket.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.hackerfj.loansupermarket.R;
@@ -32,7 +34,6 @@ public class LoanHomepageAdapter extends RecyclerBaseAdapter<GetHomebannerRes> {
     @Override
     protected void bindDataForView(ViewHolder holder, GetHomebannerRes getHomebannerRes, int position) {
         TextView tv_Title = holder.getView(R.id.tv_Title);
-
         ImageView image_log = holder.getView(R.id.image_log);
         if ("1".equals(getHomebannerRes.getAclass())){
             tv_Title.setText("餐饮");
@@ -73,7 +74,14 @@ public class LoanHomepageAdapter extends RecyclerBaseAdapter<GetHomebannerRes> {
         }
 
         TextView tv_rate = holder.getView(R.id.tv_rate);
-        tv_rate.setText(getHomebannerRes.getMoney());
+        if ("1".equals(getHomebannerRes.getType())){
+            tv_rate.setText("-" + getHomebannerRes.getMoney());
+            tv_rate.setTextColor(Color.parseColor("#fa723c"));
+        }else {
+            tv_rate.setText("+" + getHomebannerRes.getMoney());
+            tv_rate.setTextColor(Color.parseColor("#dbb76c"));
+        }
+
 
 
     }

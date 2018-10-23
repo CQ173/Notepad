@@ -1,10 +1,6 @@
 package com.hackerfj.loansupermarket.util.network;
 
-
-
 public class UrlUtil {
-    //外网服务器地址
-//    public static final String BASE_URL = "http://api.aoyi.pro:8080/api/";
     /**
      * 加载图片域名
      */
@@ -16,7 +12,7 @@ public class UrlUtil {
     /**
      *获取
      */
-    public static final String BANNER = "api";
+    public static final String BANNER = "api/all";
 
     /**
      * 添加
@@ -31,26 +27,21 @@ public class UrlUtil {
     /**
      * 三个
      */
-    public static final String ALL_MONEY = "api/Monthly";
-
-    /**
-     * 获取短信验证码
-     */
-    public static final String GET_CODE = "appapi/User/verifiDriver";
+    public static final String ALL_MONEY = "api/monthly";
 
     /**
      * 登录
      */
-    public static final String LOGIN_USER = "appapi/User/loginact";
+    public static final String LOGIN_USER = "api/login";
 
     /**
      * 退出登录
      */
-    public static final String EXIT_LOGON = "appapi/User/logout";
+    public static final String EXIT_LOGON = "api/logout";
 
     /**
-     * 用户中心获取用户个人信息
+     * 统计图
      */
-    public static final String GET_USER = "appapi/User/getUserInfo";
+    public static final String TJITU = "api/count";
 
 }

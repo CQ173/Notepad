@@ -1,9 +1,6 @@
 package com.hackerfj.loansupermarket.view.fragment;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -14,44 +11,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.utils.StringUtils;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.hackerfj.loansupermarket.R;
 import com.hackerfj.loansupermarket.app.constant.Global;
 import com.hackerfj.loansupermarket.app.constant.SharePref;
-import com.hackerfj.loansupermarket.model.entity.res.GetUserRes;
-import com.hackerfj.loansupermarket.model.entity.res.Param;
-import com.hackerfj.loansupermarket.util.Constants;
-import com.hackerfj.loansupermarket.util.FrescoUtil;
-import com.hackerfj.loansupermarket.util.MD5Util;
-import com.hackerfj.loansupermarket.util.StartActivityUtil;
+import com.hackerfj.loansupermarket.model.entity.res.GetHomePageRes;
 import com.hackerfj.loansupermarket.util.network.Api;
 import com.hackerfj.loansupermarket.util.network.RxHelper;
 import com.hackerfj.loansupermarket.util.network.RxSubscriber;
-import com.hackerfj.loansupermarket.util.network.UrlUtil;
-import com.hackerfj.loansupermarket.view.activity.LoginActivity;
 import com.hackerfj.loansupermarket.view.fragment.base.BaseFragment;
-import com.makeramen.roundedimageview.RoundedImageView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.app.Activity.RESULT_OK;
 
-
-public class MeFragment extends BaseFragment {
+public class MeFragment extends BaseFragment implements View.OnClickListener{
 
     @BindView(R.id.tv_username)
     TextView tv_username;
-
     @BindView(R.id.ll_Exit_logon)
     LinearLayout ll_Exit_logon;
 
 
-    private String token;
-    private String username;
-    private String id;
     @Override
     protected int setContentLayout() {
         return R.layout.fragment_me;
@@ -59,27 +39,12 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        token = Global.getToken();
-        id = Global.getId();
-        getuserinformation();
+        tv_username.setText(Global.getUsername());
+        Log.i("token--" , Global.getToken());
     }
 
-    public void getuserinformation(){
-        Api.getDefault().getuser(token, id)
-                .compose(RxHelper.handleResult())
-                .subscribe(new RxSubscriber<GetUserRes>(mActivity) {
-                    @Override
-                    protected void _onNext(GetUserRes userRes) {
-                        tv_username.setText(userRes.getUsername());
-                    }
-                    @Override
-                    protected void _onError(String msg) {
 
-                    }
-                });
-    }
-
-    @OnClick({R.id.ll_me_recharge , R.id.ll_Exit_logon})
+    @OnClick({R.id.ll_me_recharge , R.id.ll_Exit_logon })
     public void onClick(View view){
         switch (view.getId()){
             case R.id.ll_me_recharge:
@@ -112,14 +77,14 @@ public class MeFragment extends BaseFragment {
     }
 
     public void Exitlogon(){
-        if (token == null){
+        if (StringUtils.isEmpty(Global.getToken())){
             Toast.makeText(mActivity, "您还没有登录哦！", Toast.LENGTH_SHORT).show();
         }else {
-            Api.getDefault().exitlogon(token)
+            Api.getDefault().exitlogon(Global.getToken())
                     .compose(RxHelper.handleResult())
-                    .subscribe(new RxSubscriber<List<String>>(mActivity) {
+                    .subscribe(new RxSubscriber<GetHomePageRes>(mActivity) {
                         @Override
-                        protected void _onNext(List<String> s) {
+                        protected void _onNext(GetHomePageRes s) {
                             SharePref.getInstance().clear();
                             Toast.makeText(mActivity, "退出登录成功", Toast.LENGTH_SHORT).show();
                             ll_Exit_logon.setVisibility(View.GONE);
@@ -159,7 +124,7 @@ public class MeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
 //        token = sp.getString("token" , null);
-        if (null != token){
+        if (Global.getToken()!= null ){
             ll_Exit_logon.setVisibility(View.VISIBLE);
         }
     }

@@ -21,12 +21,12 @@ public class Global {
     /**
      * ID
      */
-    public static String getId(){
-        return SharePref.getInstance().getString(SharePref.ID);
+    public static int getId(){
+        return SharePref.getInstance().getInt(SharePref.ID);
     }
 
-    public static void saveID(String id){
-        SharePref.getInstance().putString(SharePref.ID,id);
+    public static void saveID(int id){
+        SharePref.getInstance().putInt(SharePref.ID,id);
     }
     /**
      * username

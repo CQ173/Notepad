@@ -116,12 +116,22 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/tv_nologin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/gray_c"
+                android:text="请先登录哦！"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_red_bag"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
+
 
         </LinearLayout>
 

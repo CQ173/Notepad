@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.blankj.utilcode.utils.StringUtils;
 import com.hackerfj.loansupermarket.MainActivity;
+import com.hackerfj.loansupermarket.app.constant.Global;
 import com.hackerfj.loansupermarket.util.StartActivityUtil;
 
 public class StartpageActivity extends Activity {
@@ -22,7 +24,11 @@ public class StartpageActivity extends Activity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        StartActivityUtil.start(this , MainActivity.class);
+        if (StringUtils.isEmpty(Global.getToken())){
+            StartActivityUtil.start(this , LoginActivity.class);
+        }else {
+            StartActivityUtil.start(this , MainActivity.class);
+        }
         finish();
     }
 }

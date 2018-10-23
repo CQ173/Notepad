@@ -1,14 +1,11 @@
 package com.hackerfj.loansupermarket.util.network;
 
-
+import com.hackerfj.loansupermarket.model.entity.res.BeannRes;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomePageRes;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomebannerRes;
-import com.hackerfj.loansupermarket.model.entity.res.GetUserRes;
-import com.hackerfj.loansupermarket.model.entity.res.Param;
 import com.hackerfj.loansupermarket.model.entity.res.SangeRes;
-import com.hackerfj.loansupermarket.model.entity.res.TypeofloanRes;
+import com.hackerfj.loansupermarket.model.entity.res.StingsRes;
 import com.hackerfj.loansupermarket.model.entity.res.UserinfoRes;
-import com.hackerfj.loansupermarket.model.entity.res.WholeInfoRes;
 
 import java.util.List;
 
@@ -22,19 +19,20 @@ import rx.Observable;
 public interface ApiService {
 
     /**
-     * 获取banner
+     * 获取
      */
     @GET(UrlUtil.BANNER)
     Observable<BaseModel<List<GetHomebannerRes>>> getHomeInfo(
-
+            @Query("uid") Integer uid,
+            @Query("type") Integer type
     );
-
 
     /**
      * 添加
      */
     @GET(UrlUtil.ALL_PRODUCTTS)
-    Observable<BaseModel<List<String>>> addmoney(
+    Observable<BaseModel<StingsRes>> addmoney(
+            @Query("uid") Integer uid,
             @Query("money") String money
     );
 
@@ -42,7 +40,8 @@ public interface ApiService {
      * tjia
      */
     @GET(UrlUtil.ADD_ALL)
-    Observable<BaseModel<List<String>>> addall(
+    Observable<BaseModel<StingsRes>> addall(
+            @Query("uid") Integer uid,
             @Query("type") Integer type ,
             @Query("aclass") Integer aclass ,
             @Query("money") String money
@@ -53,47 +52,34 @@ public interface ApiService {
      */
     @GET(UrlUtil.ALL_MONEY)
     Observable<BaseModel<SangeRes>> allmoney(
-
-    );
-
-    /**
-     * 获取短信验证码
-     */
-    @FormUrlEncoded
-    @POST(UrlUtil.GET_CODE)
-    Observable<BaseModel<Param>> getiphonecode(
-            @Field("mobile") String mobile,
-            @Field("sign") String sign
+            @Query("uid") Integer uid
     );
 
     /**
      * 用户登录
      */
-    @FormUrlEncoded
-    @POST(UrlUtil.LOGIN_USER)
+    @GET(UrlUtil.LOGIN_USER)
     Observable<BaseModel<UserinfoRes>> reloadlogin(
-            @Field("mobile") String mobile,
-            @Field("sign") String sign,
-            @Field("verifyCode") String verifyCode
+            @Query("name") String name,
+            @Query("passwd") String passwd
     );
 
     /**
      * 退出登录
      */
     @GET(UrlUtil.EXIT_LOGON)
-    Observable<BaseModel<List<String>>> exitlogon(
+    Observable<BaseModel<GetHomePageRes>> exitlogon(
             @Query("token") String token
     );
 
     /**
-     * 用户中心获取用户个人信息
+     * 统计图
      */
-    @FormUrlEncoded
-    @POST(UrlUtil.GET_USER)
-    Observable<BaseModel<GetUserRes>> getuser(
-            @Field("token") String token,
-            @Field("uid") String uid
+    @GET(UrlUtil.TJITU)
+    Observable<BaseModel<BeannRes>> alltjt(
+            @Query("uid") Integer uid
     );
+
 
 
 }
