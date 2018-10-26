@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="center"
-        android:background="#0082FF"
+        android:background="@color/color_FE6B6B"
         android:orientation="vertical"
         android:layout_height="223dp">
 
@@ -66,9 +66,8 @@
             android:layout_height="@dimen/m45" />
     </LinearLayout>
 
-
     <LinearLayout
-        android:id="@+id/ll_Exit_logon"
+        android:id="@+id/ll_setup"
         android:layout_marginTop="2dp"
         android:background="#ffffff"
         android:orientation="horizontal"
@@ -77,7 +76,7 @@
         android:layout_height="48dp">
         <ImageView
             android:layout_marginLeft="15dp"
-            android:src="@drawable/icon_sign_out"
+            android:src="@drawable/icon_p_setup"
             android:layout_width="20dp"
             android:scaleType="fitXY"
             android:layout_height="20dp" />
@@ -87,7 +86,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="退出登录"
+            android:text="设置"
             android:textColor="#898888"
             android:textSize="16dp" />
         <ImageView

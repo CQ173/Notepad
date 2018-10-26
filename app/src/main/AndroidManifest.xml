@@ -35,6 +35,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.StingsActivity" />
+        <activity android:name=".view.activity.SetUpActivity" />
+        <activity android:name=".view.activity.AboutActivity" />
+        <activity android:name=".view.activity.FeedbackActivity" />
 
         <meta-data android:value="5b961587f43e48330d00005c" android:name="UMENG_APPKEY"/>
         <meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>

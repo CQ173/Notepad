@@ -1,56 +1,28 @@
 package com.hackerfj.loansupermarket.view.fragment;
 
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.blankj.utilcode.utils.StringUtils;
 import com.hackerfj.loansupermarket.R;
 import com.hackerfj.loansupermarket.app.constant.Global;
 import com.hackerfj.loansupermarket.model.entity.res.BeannRes;
-import com.hackerfj.loansupermarket.model.entity.res.GetHomebannerRes;
-import com.hackerfj.loansupermarket.model.entity.res.TypeofloanRes;
-import com.hackerfj.loansupermarket.model.entity.res.WholeInfoRes;
-import com.hackerfj.loansupermarket.util.StartActivityUtil;
 import com.hackerfj.loansupermarket.util.network.Api;
 import com.hackerfj.loansupermarket.util.network.RxHelper;
 import com.hackerfj.loansupermarket.util.network.RxSubscriber;
-import com.hackerfj.loansupermarket.view.activity.LoginActivity;
 import com.hackerfj.loansupermarket.view.adapter.FragmentAdapter;
-import com.hackerfj.loansupermarket.view.adapter.HomeFragAdapter;
-import com.hackerfj.loansupermarket.view.adapter.LoanHomepageAdapter;
-import com.hackerfj.loansupermarket.view.adapter.SpinerAAdapter;
-import com.hackerfj.loansupermarket.view.adapter.SpinerAdapter;
 import com.hackerfj.loansupermarket.view.fragment.base.BaseFragment;
-import com.hackerfj.loansupermarket.view.widget.AnnularView;
 import com.hackerfj.loansupermarket.view.widget.PieChartView;
-import com.hackerfj.loansupermarket.view.widget.SpinerPopAWindow;
-import com.hackerfj.loansupermarket.view.widget.SpinerPopWindow;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class HomeFragment extends BaseFragment{
 

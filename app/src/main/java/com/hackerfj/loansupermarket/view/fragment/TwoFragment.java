@@ -56,9 +56,7 @@ public class TwoFragment extends BaseFragment {
                         rvLoanList.setAdapter(homeFragAdapter);
                         rvLoanList.setNestedScrollingEnabled(false);
                         homeFragAdapter.notifyDataSetChanged();
-
                     }
-
                     @Override
                     protected void _onError(String msg) {
 

@@ -74,7 +74,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="详细"
+                android:text="统计"
                 android:textSize="11dp"
                 android:textColor="@color/color_797978"
                 android:gravity="center"

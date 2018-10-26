@@ -1,20 +1,12 @@
 package com.hackerfj.loansupermarket.view.fragment;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +14,9 @@ import android.widget.Toast;
 import com.blankj.utilcode.utils.StringUtils;
 import com.hackerfj.loansupermarket.R;
 import com.hackerfj.loansupermarket.app.constant.Global;
-import com.hackerfj.loansupermarket.model.entity.res.GetHomePageRes;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomebannerRes;
 import com.hackerfj.loansupermarket.model.entity.res.SangeRes;
 import com.hackerfj.loansupermarket.model.entity.res.StingsRes;
-import com.hackerfj.loansupermarket.model.entity.res.WholeInfoRes;
 import com.hackerfj.loansupermarket.util.StartActivityUtil;
 import com.hackerfj.loansupermarket.util.network.Api;
 import com.hackerfj.loansupermarket.util.network.RxHelper;
@@ -35,18 +25,10 @@ import com.hackerfj.loansupermarket.view.activity.LoginActivity;
 import com.hackerfj.loansupermarket.view.activity.StingsActivity;
 import com.hackerfj.loansupermarket.view.adapter.LoanHomepageAdapter;
 import com.hackerfj.loansupermarket.view.fragment.base.BaseFragment;
-import com.hackerfj.loansupermarket.view.widget.GlideImageLoader;
-import com.youth.banner.Banner;
-import com.youth.banner.listener.OnBannerListener;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
-
-
 public class LoanFragment extends BaseFragment {
 
     @BindView(R.id.rv_red_bag)
@@ -144,8 +126,6 @@ public class LoanFragment extends BaseFragment {
         popWindow.setBackgroundDrawable(dw);
         popWindow.showAtLocation(parent , Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
-
-
 
     /**
      * 获取首页数据

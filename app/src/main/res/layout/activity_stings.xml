@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
                     android:paddingBottom="10dp"
-                    android:background="#0082FF">
+                    android:background="@color/color_FE6B6B">
 
                     <ImageView
                         android:id="@+id/iv_return"
@@ -52,7 +52,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="支出"
-                        android:textColor="#8b8b8b"
+                        android:textColor="@color/color_101010"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -94,31 +94,6 @@
                     android:orientation="vertical"
                     android:paddingTop="30dp"
                     android:visibility="visible">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="20dp"
-                        android:orientation="horizontal"
-                        android:layout_height="50dp">
-                        <TextView
-                            android:id="@+id/tv_title_z"
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="餐饮"
-                            android:textSize="20dp"
-                            android:textColor="@color/color_101010"
-                            />
-
-                        <EditText
-                            android:id="@+id/et_money_z"
-                            android:layout_marginLeft="15dp"
-                            android:layout_width="200dp"
-                            android:layout_height="match_parent"
-                            android:background="@null"
-                            android:inputType="number"
-                            android:hint="请输入金额"
-                            />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_marginTop="8dp"
@@ -227,7 +202,10 @@
 
                         </LinearLayout>
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayF5" />
                     <LinearLayout
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal"
@@ -335,7 +313,39 @@
 
                         </LinearLayout>
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayF5" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="25dp"
+                        android:orientation="horizontal"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/tv_title_z"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:text="餐饮"
+                            android:textSize="20dp"
+                            android:textColor="@color/color_101010"
+                            />
 
+                        <EditText
+                            android:id="@+id/et_money_z"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:hint="请输入金额"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayF5" />
                 </LinearLayout>
 
 
@@ -346,31 +356,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="20dp"
-                        android:orientation="horizontal"
-                        android:layout_height="50dp">
-                        <TextView
-                            android:id="@+id/tv_title_s"
-                            android:layout_width="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="工资"
-                            android:textSize="20dp"
-                            android:textColor="@color/color_101010"
-                            />
-
-                        <EditText
-                            android:id="@+id/et_money_s"
-                            android:layout_marginLeft="15dp"
-                            android:layout_width="200dp"
-                            android:layout_height="match_parent"
-                            android:background="@null"
-                            android:inputType="number"
-                            android:hint="请输入金额"
-                            />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_marginTop="8dp"
@@ -479,7 +464,39 @@
 
                         </LinearLayout>
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayF5" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="25dp"
+                        android:orientation="horizontal"
+                        android:layout_height="50dp">
+                        <TextView
+                            android:id="@+id/tv_title_s"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:text="工资"
+                            android:textSize="20dp"
+                            android:textColor="@color/color_101010"
+                            />
 
+                        <EditText
+                            android:id="@+id/et_money_s"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:inputType="number"
+                            android:hint="请输入金额"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrayF5" />
                 </LinearLayout>
 
             </LinearLayout>

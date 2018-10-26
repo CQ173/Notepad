@@ -1,31 +1,21 @@
 package com.hackerfj.loansupermarket;
 
 import android.Manifest;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.utils.StringUtils;
 import com.hackerfj.loansupermarket.app.constant.Global;
-import com.hackerfj.loansupermarket.util.Constants;
 import com.hackerfj.loansupermarket.util.StartActivityUtil;
 import com.hackerfj.loansupermarket.view.activity.LoginActivity;
+import com.hackerfj.loansupermarket.view.activity.SetUpActivity;
 import com.hackerfj.loansupermarket.view.activity.base.BaseActivity;
 import com.hackerfj.loansupermarket.view.fragment.HomeFragment;
 import com.hackerfj.loansupermarket.view.fragment.LoanFragment;
@@ -41,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements MeFragment.Refreshfragment{
+public class MainActivity extends BaseActivity implements SetUpActivity.Refreshfragment{
 
     private String token;
     @BindView(R.id.vp_main)
@@ -88,7 +78,7 @@ public class MainActivity extends BaseActivity implements MeFragment.Refreshfrag
 
                     }
                 });
-
+        SetUpActivity setUpActivity = new SetUpActivity();
         //实例化碎片
         LoanFragment loanFragment = new LoanFragment();
         HomeFragment homeFragment = new HomeFragment();
@@ -96,9 +86,8 @@ public class MainActivity extends BaseActivity implements MeFragment.Refreshfrag
         fragmentList.add(loanFragment);
         fragmentList.add(homeFragment);
         fragmentList.add(meFragment);
-        meFragment.setClickListener( this );
+        setUpActivity.setClickListener( this );
         vpMain.setAdapter(new MyAdapter(getSupportFragmentManager()));
-
     }
 
     @OnClick({R.id.rb_weixin_weixin , R.id.rb_weixin_contact , R.id.rb_weixin_find})
@@ -206,6 +195,5 @@ public class MainActivity extends BaseActivity implements MeFragment.Refreshfrag
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 }

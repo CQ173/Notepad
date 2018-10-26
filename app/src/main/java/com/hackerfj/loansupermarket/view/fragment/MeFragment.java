@@ -5,32 +5,21 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.blankj.utilcode.utils.StringUtils;
 import com.hackerfj.loansupermarket.R;
 import com.hackerfj.loansupermarket.app.constant.Global;
-import com.hackerfj.loansupermarket.app.constant.SharePref;
-import com.hackerfj.loansupermarket.model.entity.res.GetHomePageRes;
-import com.hackerfj.loansupermarket.util.network.Api;
-import com.hackerfj.loansupermarket.util.network.RxHelper;
-import com.hackerfj.loansupermarket.util.network.RxSubscriber;
+import com.hackerfj.loansupermarket.util.StartActivityUtil;
+import com.hackerfj.loansupermarket.view.activity.SetUpActivity;
 import com.hackerfj.loansupermarket.view.fragment.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-
 public class MeFragment extends BaseFragment implements View.OnClickListener{
 
     @BindView(R.id.tv_username)
     TextView tv_username;
-    @BindView(R.id.ll_Exit_logon)
-    LinearLayout ll_Exit_logon;
-
 
     @Override
     protected int setContentLayout() {
@@ -40,18 +29,17 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     protected void initView() {
         tv_username.setText(Global.getUsername());
-        Log.i("token--" , Global.getToken());
     }
 
 
-    @OnClick({R.id.ll_me_recharge , R.id.ll_Exit_logon })
+    @OnClick({R.id.ll_me_recharge , R.id.ll_setup })
     public void onClick(View view){
         switch (view.getId()){
             case R.id.ll_me_recharge:
                 setpopup();
                 break;
-            case R.id.ll_Exit_logon:
-                Exitlogon();
+            case R.id.ll_setup:
+                StartActivityUtil.start(mActivity , SetUpActivity.class);
                 break;
         }
     }
@@ -76,40 +64,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
         popWindow.showAtLocation(parent , Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
-    public void Exitlogon(){
-        if (StringUtils.isEmpty(Global.getToken())){
-            Toast.makeText(mActivity, "您还没有登录哦！", Toast.LENGTH_SHORT).show();
-        }else {
-            Api.getDefault().exitlogon(Global.getToken())
-                    .compose(RxHelper.handleResult())
-                    .subscribe(new RxSubscriber<GetHomePageRes>(mActivity) {
-                        @Override
-                        protected void _onNext(GetHomePageRes s) {
-                            SharePref.getInstance().clear();
-                            Toast.makeText(mActivity, "退出登录成功", Toast.LENGTH_SHORT).show();
-                            ll_Exit_logon.setVisibility(View.GONE);
-                            tv_username.setVisibility(View.GONE);
-                            refreshfragment.onexitClick( );
-                        }
-                        @Override
-                        protected void _onError(String msg) {
-                            Toast.makeText(mActivity, "退出登录失败", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
-    }
-
-    //传递到mainactivity
-    public interface Refreshfragment{
-        void onexitClick( );
-    }
-
-    private Refreshfragment refreshfragment;
-
-    public void setClickListener(Refreshfragment listener){
-        this.refreshfragment = listener;
-    }
-
     @Override
     protected void obtainData() {
 
@@ -123,10 +77,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-//        token = sp.getString("token" , null);
-        if (Global.getToken()!= null ){
-            ll_Exit_logon.setVisibility(View.VISIBLE);
-        }
     }
 
 }

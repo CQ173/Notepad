@@ -22,12 +22,13 @@
                 android:id="@+id/rl_b"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#0082FF">
+                android:background="@color/color_FE6B6B">
 
                 <LinearLayout
                     android:id="@+id/ll_ed"
-                    android:layout_marginTop="15dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -104,14 +105,17 @@
 
                 </LinearLayout>
 
-                <ImageView
+                <TextView
                     android:id="@+id/iv_jiyb"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/shell_charge"
-                    android:scaleType="fitXY"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/image_shape"
+                    android:text="记一笔"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="15dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_alignParentBottom="true"
                     />
 
             </RelativeLayout>

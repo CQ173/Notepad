@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#0082FF"
+        android:background="@color/color_FE6B6B"
         android:textColor="@color/white"
         android:text="统计"
         android:gravity="center"
@@ -31,6 +31,7 @@
                     app:tabTextColor="@color/colorGray8b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:tabIndicatorColor="@color/color_FE6B6B"
                     />
             </LinearLayout>
             <android.support.v4.view.ViewPager

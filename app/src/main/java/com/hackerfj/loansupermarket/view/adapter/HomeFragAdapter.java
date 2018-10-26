@@ -3,28 +3,18 @@ package com.hackerfj.loansupermarket.view.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.hackerfj.loansupermarket.R;
 import com.hackerfj.loansupermarket.model.entity.res.GetHomebannerRes;
-import com.hackerfj.loansupermarket.model.entity.res.WholeInfoRes;
-import com.hackerfj.loansupermarket.util.FrescoUtil;
-import com.hackerfj.loansupermarket.util.network.UrlUtil;
 import com.hackerfj.loansupermarket.view.adapter.base.RecyclerBaseAdapter;
 import com.hackerfj.loansupermarket.view.adapter.base.ViewHolder;
 
 import java.util.List;
 
 public class HomeFragAdapter extends RecyclerBaseAdapter<GetHomebannerRes> {
-
-
 
     public HomeFragAdapter(@NonNull Context context, @NonNull List<GetHomebannerRes> getHomebannerRes ) {
         super(context, getHomebannerRes);
@@ -36,7 +26,10 @@ public class HomeFragAdapter extends RecyclerBaseAdapter<GetHomebannerRes> {
         TextView tv_Title = holder.getView(R.id.tv_Title);
 
         ImageView image_log = holder.getView(R.id.image_log);
-        if ("1".equals(getHomebannerRes.getAclass())){
+        if ("2".equals(getHomebannerRes.getType()) && "1".equals(getHomebannerRes.getAclass())){
+            tv_Title.setText("工资");
+            image_log.setImageResource(R.drawable.shell9_2_wages);
+        }else if ("1".equals(getHomebannerRes.getAclass())){
             tv_Title.setText("餐饮");
             image_log.setImageResource(R.drawable.shell9_2_restaurant);
         }else if ("2".equals(getHomebannerRes.getAclass())){
@@ -82,7 +75,6 @@ public class HomeFragAdapter extends RecyclerBaseAdapter<GetHomebannerRes> {
             tv_rate.setText("+" + getHomebannerRes.getMoney());
             tv_rate.setTextColor(Color.parseColor("#dbb76c"));
         }
-
     }
 
     @NonNull
